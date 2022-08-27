@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pierre R Bernard</title>
 
+
     <style>
         /*normalize*/
         @import url("https://unpkg.com/tailwindcss@3.1.8/src/css/preflight.css");
@@ -15,293 +16,179 @@
         @import url('https://fonts.googleapis.com/css2?family=Noticia+Text:wght@400;700&family=Source+Sans+Pro&display=swap');
 
         * {
-            --pink-light: rgba(252, 216, 212, .8);
-            --blue-light: rgba(16, 68, 255, 1);
-            --blue-dark: rgba(12, 31, 63, 1);
+            --pink-l: rgba(252, 216, 212, 1);
+            --blue-l: rgba(16, 68, 255, 1);
+            --blue-d: rgba(12, 31, 63, 1);
+            --grey-t: rgba(51, 51, 51, .65);
 
-            --font-family-head: "Noticia Text";
-            --font-family-body: "Source Sans Pro";
+            --serif: "Noticia Text", serif;
+            --sans-serif: "Source Sans Pro", sans-serif;
 
-            --padding: 0 calc(1rem * 28/16);
+            --debugging: 1px solid red;
+        }
 
-            --debug: 1px solid red;
+        * {
+            outline: 1px dashed rgba(28, 63, 12, .05);
+            background: rgba(28, 63, 12, .05);
+        }
 
-            /* font-weight: 400; */
-            font-family: var(--font-family-body);
+        html {
+            font-family: var(--sans-serif);
+            line-height: 24px;
+        }
+
+        .contact__icon {
+            stroke: magenta;
         }
     </style>
 
-    <!-- sizing -->
-    <style>
-        .text-bold {
-            font-weight: 700;
-        }
-
-        .text-2xl {
-            font-size: 1.5rem;
-            line-height: 2rem;
-        }
-
-        .h-5 {
-            height: 1.25rem;
-        }
-
-        .h-6 {
-            height: 1.5rem;
-        }
-
-        .h-7 {
-            height: 1.75rem;
-        }
-
-        .h-8 {
-            height: 2rem;
-        }
-
-        .h-9 {
-            height: 2.25rem;
-        }
-
-        .rounded {
-            border-radius: 0.25rem;
-        }
-    </style>
-
-    <!-- positioning -->
-    <style>
-        .grid {
-            display: grid;
-        }
-
-        .flex {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .flex-wrap {
-            flex-wrap: wrap;
-        }
-
-        .flex-col {
+    <style id="css:preview">
+        .preview {
             display: flex;
             flex-direction: column;
+            gap: 8px;
+            padding: 0 calc((360 - 304)/2 * 1px);
+            /* x-axis 304  */
+            /* y-axis 153  */
         }
 
-        .text-center {
-            text-align: center;
+        .preview a {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 17px;
         }
 
-        .justify-center {
-            justify-content: center;
-        }
-
-        .justify-between {
-            justify-content: space-between;
-        }
-
-        .row-span-full {
-            grid-row: 1/-1;
-        }
-
-        .place-items-center {
-            place-items: center;
-        }
-
-        .align-items-center {
+        .preview a:last-child {
+            flex-direction: row;
+            gap: 16px;
             align-items: center;
         }
 
-        .grid-address {
-            grid-template-columns: max-content 1fr;
-            grid-template-rows: repeat(2, 1fr);
-        }
-    </style>
-
-    <!-- spacing -->
-    <style>
-        .max-w-sm {
-            max-width: 24rem;
+        .preview__figure {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: auto;
         }
 
-        .w-68 {
-            width: 17rem;
+        .preview__image {
+            height: 220px;
+            width: 304px;
         }
 
-        .w-full {
-            width: 100%;
+        .preview__title {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+            color: var(--blue-d);
         }
 
-        .p-6 {
-            padding: 1.5rem;
-        }
-
-        .px-7 {
-            padding: 0 1.75rem;
-        }
-
-        .px-8 {
-            padding: 0 2rem;
-        }
-
-        .py-7 {
-            padding: 1.75rem 0;
-
-        }
-
-        .gap-4 {
-            gap: 1rem;
-        }
-
-        .gap-8 {
-            gap: 2rem;
-        }
-
-        .gap-x-5 {
-            column-gap: 1.25rem;
-        }
-    </style>
-
-    <!-- color -->
-    <style>
-        .opactity-50 {
-            opacity: 0.5;
-        }
-
-        .stroke-pink-light {
-            stroke: var(--pink-light)
-        }
-
-        .stroke-blue-light {
-            stroke: var(--blue-light)
-        }
-
-        .fill-pink-light {
-            fill: var(--pink-light)
-        }
-
-        .fill-blue-light {
-            fill: var(--blue-light)
-        }
-
-        .fill-blue-dark {
-            fill: var(--blue-dark)
-        }
-
-        .text-white {
-            color: #fff;
-        }
-
-        .text-black\/50 {
-            color: rgba(0, 0, 0, 0.5);
-        }
-
-        .text-white\/50 {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .text-pink-light {
-            color: var(--pink-light)
-        }
-
-        .text-blue-light {
-            color: var(--blue-light)
-        }
-
-        .before\:text-black::before {
-            color: #000;
-        }
-
-        .before\:text-pink-light::before {
-            color: var(--pink-light)
-        }
-
-        .bg-white {
-            background: #fff;
-        }
-
-        .bg-pink-light {
-            background: var(--pink-light);
-        }
-
-        .bg-blue-light {
-            background: var(--blue-light);
-        }
-
-        .bg-blue-dark {
-            background: var(--blue-dark);
-        }
-    </style>
-
-    <!-- pseudo -->
-    <style>
-        .before\:content::before {
-            content: attr(aria-label);
-            display: block;
-            width: 100%;
-            text-transform: capitalize;
-            /* font-weight: 700; */
-        }
-
-        .before\:text-bold::before {
+        .preview__caption {
             font-weight: 700;
         }
 
-        .before\:text-2xl::before {
-            font-size: 1.5rem;
-            line-height: 2rem;
+        .preview__avatar {
+            border-radius: 50%;
+        }
+
+        .preview__author {
+            color: var(--grey-t);
         }
     </style>
 
-    <!-- media queries -->
     <style>
-        @media screen and (min-width: 1024px) {
-            .lg\:grid {
-                display: grid;
-            }
+        :is(.recent-posts, .categories, .blog-tags)::before {
+            content: attr(aria-label);
+            text-transform: capitalize;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+            display: block;
+            width: 100%;
+            padding-bottom: 23px;
+        }
 
-            .lg\:grid-footer {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                grid-template-rows: repeat(3, auto);
-            }
+        .categories,
+        .recent-posts,
+        .blog-tags {
+            display: flex;
+        }
 
-            .lg\:col-span-full {
-                grid-column: 1 / -1;
-            }
+        .categories,
+        .recent-posts {
+            flex-direction: column;
+        }
 
-            .lg\:flex {
-                flex-direction: row;
-            }
+        .categories a {
+            display: flex;
+            justify-content: space-between;
+            color: var(--grey-t);
+            border-bottom: 1px solid var(--blue-l);
+            padding: 9px 0;
+            margin: calc((14 - 9) * 1px) 0;
+        }
+
+        /* override text color set for 
+        text content inside anchor */
+        .categories a>* {
+            color: black;
+        }
+
+        .blog-tags {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 8px 22px;
+            font-weight: 700;
         }
     </style>
 </head>
 
 
 <body>
-    <header class="bg-pink-light flex p-6 justify-between">
-        <h1>PRB</h1>
-        <svg class="h-6 row-span-full fill-blue-light" aria-label="menu" viewBox="0 0 26 22" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-                d="M1.86743 18.1867C1.37629 18.1867 0.893429 18.3891 0.545714 18.744C0.198286 19.0989 0 19.5917 0 20.0933C0 20.5949 0.198286 21.0877 0.545714 21.4427C0.893429 21.7976 1.37629 22 1.86743 22C2.35857 22 2.84114 21.7976 3.18886 21.4427C3.53657 21.0877 3.73486 20.5949 3.73486 20.0933C3.73486 19.5917 3.53657 19.0989 3.18886 18.744C2.84114 18.3891 2.35857 18.1867 1.86743 18.1867ZM1.86743 9.09333C1.37629 9.09333 0.893429 9.29573 0.545714 9.65067C0.198286 10.0056 0 10.4984 0 11C0 11.5016 0.198286 11.9944 0.545714 12.3464C0.893429 12.7043 1.37629 12.9067 1.86743 12.9067C2.35857 12.9067 2.84114 12.7043 3.18886 12.3464C3.53657 11.9915 3.73486 11.5016 3.73486 11C3.73486 10.4984 3.53657 10.0056 3.18886 9.65067C2.84114 9.29573 2.35857 9.09333 1.86743 9.09333ZM1.86743 0C1.37629 0 0.893429 0.2024 0.545714 0.557333C0.198286 0.912267 0 1.40507 0 1.90667C0 2.40827 0.198286 2.90107 0.545714 3.256C0.893429 3.61093 1.37629 3.81333 1.86743 3.81333C2.35857 3.81333 2.84114 3.61093 3.18886 3.256C3.53657 2.90107 3.73486 2.40827 3.73486 1.90667C3.73486 1.40507 3.53657 0.912267 3.18886 0.557333C2.84114 0.2024 2.35857 0 1.86743 0ZM21.164 18.3333H8.53743C7.58543 18.3333 6.81343 19.1215 6.81343 20.0933C6.81343 21.0651 7.58543 21.8533 8.53743 21.8533H21.164C22.1157 21.8533 22.8877 21.0651 22.8877 20.0933C22.8877 19.1215 22.1157 18.3333 21.164 18.3333ZM8.53743 12.76H17.4857C18.4374 12.76 19.2094 11.9718 19.2094 11C19.2094 10.0282 18.4374 9.24 17.4857 9.24H8.53743C7.58543 9.24 6.81343 10.0282 6.81343 11C6.81343 11.9718 7.58543 12.76 8.53743 12.76ZM26 1.90667C26 2.87848 25.2283 3.66667 24.2763 3.66667H8.53743C7.58543 3.66667 6.81343 2.87848 6.81343 1.90667C6.81343 0.934853 7.58543 0.146667 8.53743 0.146667H24.2763C25.2283 0.146667 26 0.934853 26 1.90667Z" />
-        </svg>
-    </header>
-    <aside>
-        <h2>Pierre R Bernard</h2>
-        <p>Personal Blog</p>
-    </aside>
-    <main>
+    <header>
         <div>
+            <a class="logo">PRB</a>
+
+            <svg aria-label="menu" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M1.86743 18.1867C1.37629 18.1867 0.893429 18.3891 0.545714 18.744C0.198286 19.0989 0 19.5917 0 20.0933C0 20.5949 0.198286 21.0877 0.545714 21.4427C0.893429 21.7976 1.37629 22 1.86743 22C2.35857 22 2.84114 21.7976 3.18886 21.4427C3.53657 21.0877 3.73486 20.5949 3.73486 20.0933C3.73486 19.5917 3.53657 19.0989 3.18886 18.744C2.84114 18.3891 2.35857 18.1867 1.86743 18.1867ZM1.86743 9.09333C1.37629 9.09333 0.893429 9.29573 0.545714 9.65067C0.198286 10.0056 0 10.4984 0 11C0 11.5016 0.198286 11.9944 0.545714 12.3464C0.893429 12.7043 1.37629 12.9067 1.86743 12.9067C2.35857 12.9067 2.84114 12.7043 3.18886 12.3464C3.53657 11.9915 3.73486 11.5016 3.73486 11C3.73486 10.4984 3.53657 10.0056 3.18886 9.65067C2.84114 9.29573 2.35857 9.09333 1.86743 9.09333ZM1.86743 0C1.37629 0 0.893429 0.2024 0.545714 0.557333C0.198286 0.912267 0 1.40507 0 1.90667C0 2.40827 0.198286 2.90107 0.545714 3.256C0.893429 3.61093 1.37629 3.81333 1.86743 3.81333C2.35857 3.81333 2.84114 3.61093 3.18886 3.256C3.53657 2.90107 3.73486 2.40827 3.73486 1.90667C3.73486 1.40507 3.53657 0.912267 3.18886 0.557333C2.84114 0.2024 2.35857 0 1.86743 0ZM21.164 18.3333H8.53743C7.58543 18.3333 6.81343 19.1215 6.81343 20.0933C6.81343 21.0651 7.58543 21.8533 8.53743 21.8533H21.164C22.1157 21.8533 22.8877 21.0651 22.8877 20.0933C22.8877 19.1215 22.1157 18.3333 21.164 18.3333ZM8.53743 12.76H17.4857C18.4374 12.76 19.2094 11.9718 19.2094 11C19.2094 10.0282 18.4374 9.24 17.4857 9.24H8.53743C7.58543 9.24 6.81343 10.0282 6.81343 11C6.81343 11.9718 7.58543 12.76 8.53743 12.76ZM26 1.90667C26 2.87848 25.2283 3.66667 24.2763 3.66667H8.53743C7.58543 3.66667 6.81343 2.87848 6.81343 1.90667C6.81343 0.934853 7.58543 0.146667 8.53743 0.146667H24.2763C25.2283 0.146667 26 0.934853 26 1.90667Z" />
+            </svg>
+        </div>
+
+        <div>
+            <h1>Pierre R Bernard</h1>
+            <p>Personal Blog</p>
+        </div>
+    </header>
+
+
+    <main>
+        <div class="preview">
             <a href="#">
-                <h3>Title</h3>
-                <figure>
-                    <img src="assets/posts/a.png" alt="Qualisque">
-                    <figcaption>Qualisque</figcaption>
+                <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
+                <figure class="preview__figure">
+                    <img class="preview__image" src="assets/posts/a.png" alt="Qualisque">
+                    <figcaption class="preview__caption">Qualisque</figcaption>
                 </figure>
             </a>
 
-            <a href="#" aria-label="avater">
-                <img src="#" alt="Graham Griffiths">
-                <p>Graham Griffiths</p>
+            <a href="#" aria-label="avatar">
+                <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
+                <p class="preview__author">Graham Griffiths</p>
+            </a>
+        </div>
+        <div class="preview">
+            <a href="#">
+                <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
+                <figure class="preview__figure">
+                    <img class="preview__image" src="assets/posts/a.png" alt="Qualisque">
+                    <figcaption class="preview__caption">Qualisque</figcaption>
+                </figure>
+            </a>
+
+            <a href="#" aria-label="avatar">
+                <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
+                <p class="preview__author">Graham Griffiths</p>
             </a>
         </div>
         <nav aria-label="pagination">
@@ -312,15 +199,28 @@
             </ul>
         </nav>
     </main>
+
     <aside>
-        <ul class="px-8 before:content before:text-bold before\:text-2xl" aria-label="categories">
-            <li><a href="#"><b>Harum</b>42</a></li>
-            <li><a href="#"><b>Vocibus</b>73</a></li>
-            <li><a href="#"><b>Dolores</b>7</a></li>
-            <li><a href="#"><b>Dissentiunt</b>15</a></li>
-            <li><a href="#"><b>Signiferumque</b>99</a></li>
+
+        <ul class="categories" aria-label="categories">
+            <li>
+                <a href="#"><b>Harum</b>42</a>
+            </li>
+            <li>
+                <a href="#"><b>Vocibus</b>73</a>
+            </li>
+            <li>
+                <a href="#"><b>Dolores</b>7</a>
+            </li>
+            <li>
+                <a href="#"><b>Dissentiunt</b>15</a>
+            </li>
+            <li>
+                <a href="#"><b>Signiferumque</b>99</a>
+            </li>
         </ul>
-        <ul class="px-8 before:content before:text-bold before\:text-2xl" role="group" aria-label="recent posts">
+
+        <ul class="recent-posts" role="group" aria-label="recent posts">
             <li>
                 <a href="#">
                     <img src="#" alt="Pro eu apeirian suavitate dissentiet">
@@ -343,8 +243,9 @@
                 </a>
             </li>
         </ul>
-        <ul class="px-8 before:content before:text-bold before:text-2xl flex flex-wrap gap-4" aria-label="tags">
-            <li><a href="#">Vide</a></li>
+
+        <ul class="blog-tags" aria-label="tags">
+            <!-- <li><a href="#">Vide</a></li> -->
             <li><a href="#">Legimus</a></li>
             <li><a href="#">Consectetuer</a></li>
             <li><a href="#">Lorem</a></li>
@@ -357,99 +258,90 @@
         </ul>
     </aside>
 
-    <footer class="bg-blue-light lg:grid lg:grid-footer flex-col">
+    <footer>
 
-        <section class="bg-pink-light lg:col-span-full" aria-label="contact me">
-            <h2>Contact me</h2>
-            <p>Share your thoughts</p>
-            <ul class="flex-col place-items-center lg:flex gap-8">
-                <li>
-                    <div class="rounded bg-white w-68 p-6 grid grid-address align-items-center gap-x-5">
-                        <h3 class="text-2xl text-bold">Office</h3>
-                        <address class="text-black/50">
-                            <p>Mel timeam, 123 45-67</p>
-                        </address>
-                        <svg class="h-9 row-span-full stroke-blue-light" viewBox="0 0 38 42" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M19.2499 23.8659C22.697 23.8659 25.4914 21.0715 25.4914 17.6244C25.4914 14.1773 22.697 11.3828 19.2499 11.3828C15.8027 11.3828 13.0083 14.1773 13.0083 17.6244C13.0083 21.0715 15.8027 23.8659 19.2499 23.8659Z"
-                                stroke-width="2" stroke-linejoin="round" />
-                            <path
-                                d="M2.48563 13.9832C6.42662 -3.34108 32.093 -3.32107 36.014 14.0033C38.3146 24.1658 31.993 32.7679 26.4516 38.0893C22.4306 41.9702 16.069 41.9702 12.028 38.0893C6.50664 32.7679 0.185058 24.1458 2.48563 13.9832Z"
-                                stroke-width="2" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </li>
-                <li>
-                    <div class="rounded bg-white w-68 p-6 grid grid-address align-items-center gap-x-5">
-                        <h3 class="text-2xl text-bold">Call Me</h3>
-                        <address class="text-black/50">
-                            <a href="tel:123-456-7890">123-456-7890</a>
-                        </address>
-                        <svg class="h-9 row-span-full stroke-blue-light" viewBox="0 0 40 40" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M36.6168 30.5502C36.6168 31.1502 36.4835 31.7668 36.2002 32.3668C35.9168 32.9668 35.5502 33.5335 35.0668 34.0668C34.2502 34.9668 33.3502 35.6168 32.3335 36.0335C31.3335 36.4502 30.2502 36.6668 29.0835 36.6668C27.3835 36.6668 25.5668 36.2668 23.6502 35.4502C21.7335 34.6335 19.8168 33.5335 17.9168 32.1502C16.0002 30.7502 14.1835 29.2002 12.4502 27.4835C10.7335 25.7502 9.1835 23.9335 7.80016 22.0335C6.4335 20.1335 5.3335 18.2335 4.5335 16.3502C3.7335 14.4502 3.3335 12.6335 3.3335 10.9002C3.3335 9.76683 3.5335 8.6835 3.9335 7.6835C4.3335 6.66683 4.96683 5.7335 5.85016 4.90016C6.91683 3.85016 8.0835 3.3335 9.31683 3.3335C9.7835 3.3335 10.2502 3.4335 10.6668 3.6335C11.1002 3.8335 11.4835 4.1335 11.7835 4.56683L15.6502 10.0168C15.9502 10.4335 16.1668 10.8168 16.3168 11.1835C16.4668 11.5335 16.5502 11.8835 16.5502 12.2002C16.5502 12.6002 16.4335 13.0002 16.2002 13.3835C15.9835 13.7668 15.6668 14.1668 15.2668 14.5668L14.0002 15.8835C13.8168 16.0668 13.7335 16.2835 13.7335 16.5502C13.7335 16.6835 13.7502 16.8002 13.7835 16.9335C13.8335 17.0668 13.8835 17.1668 13.9168 17.2668C14.2168 17.8168 14.7335 18.5335 15.4668 19.4002C16.2168 20.2668 17.0168 21.1502 17.8835 22.0335C18.7835 22.9168 19.6502 23.7335 20.5335 24.4835C21.4002 25.2168 22.1168 25.7168 22.6835 26.0168C22.7668 26.0502 22.8668 26.1002 22.9835 26.1502C23.1168 26.2002 23.2502 26.2168 23.4002 26.2168C23.6835 26.2168 23.9002 26.1168 24.0835 25.9335L25.3502 24.6835C25.7668 24.2668 26.1668 23.9502 26.5502 23.7502C26.9335 23.5168 27.3168 23.4002 27.7335 23.4002C28.0502 23.4002 28.3835 23.4668 28.7502 23.6168C29.1168 23.7668 29.5002 23.9835 29.9168 24.2668L35.4335 28.1835C35.8668 28.4835 36.1668 28.8335 36.3502 29.2502C36.5168 29.6668 36.6168 30.0835 36.6168 30.5502Z"
-                                stroke-width="2" stroke-miterlimit="10" />
-                            <path
-                                d="M30.8333 15.0003C30.8333 14.0003 30.05 12.467 28.8833 11.217C27.8167 10.067 26.4 9.16699 25 9.16699"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M36.6667 15.0002C36.6667 8.55016 31.45 3.3335 25 3.3335" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </li>
-                <li>
-                    <div class="grid grid-address rounded bg-white w-68 p-6 align-items-center gap-x-5">
-                        <h3 class="text-2xl text-bold">Write Me</h3>
-                        <address class="text-black/50">
-                            <a href="mailto:foobar@gmail.com">foobar@gmail.com</a>
-                        </address>
-                        <svg class="h-9 row-span-full stroke-blue-light" viewBox="0 0 40 41" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M3.3335 14.4339C3.3335 8.49053 6.66683 5.94336 11.6668 5.94336H28.3335C33.3335 5.94336 36.6668 8.49053 36.6668 14.4339V26.3207C36.6668 32.2641 33.3335 34.8113 28.3335 34.8113H11.6668"
-                                stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                            <path
-                                d="M28.3337 15.2832L23.117 19.5285C21.4003 20.9209 18.5837 20.9209 16.867 19.5285L11.667 15.2832"
-                                stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                            <path d="M3.3335 28.019H13.3335" stroke-width="2" stroke-miterlimit="10"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M3.3335 21.2266H8.3335" stroke-width="2" stroke-miterlimit="10"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </li>
-            </ul>
+        <section aria-label="contact me">
+            <div>
+                <h2>Contact me</h2>
+                <p>Share your thoughts</p>
+            </div>
+
+            <div role="group">
+                <div>
+                    <h3>Office</h3>
+                    <address>
+                        <a href="https://goo.gl/maps/4Z9Z9Z9Z9Z9Z9Z9Z9">
+                            Mel timeam, 123 45-67
+                        </a>
+                    </address>
+                    <svg class="contact__icon" viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19.2499 23.8659C22.697 23.8659 25.4914 21.0715 25.4914 17.6244C25.4914 14.1773 22.697 11.3828 19.2499 11.3828C15.8027 11.3828 13.0083 14.1773 13.0083 17.6244C13.0083 21.0715 15.8027 23.8659 19.2499 23.8659Z"
+                            stroke-width="2" stroke-linejoin="round" />
+                        <path
+                            d="M2.48563 13.9832C6.42662 -3.34108 32.093 -3.32107 36.014 14.0033C38.3146 24.1658 31.993 32.7679 26.4516 38.0893C22.4306 41.9702 16.069 41.9702 12.028 38.0893C6.50664 32.7679 0.185058 24.1458 2.48563 13.9832Z"
+                            stroke-width="2" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div>
+                    <h3>Call Me</h3>
+                    <address>
+                        <a href="tel:123-456-7890">123-456-7890</a>
+                    </address>
+                    <svg class="contact__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M36.6168 30.5502C36.6168 31.1502 36.4835 31.7668 36.2002 32.3668C35.9168 32.9668 35.5502 33.5335 35.0668 34.0668C34.2502 34.9668 33.3502 35.6168 32.3335 36.0335C31.3335 36.4502 30.2502 36.6668 29.0835 36.6668C27.3835 36.6668 25.5668 36.2668 23.6502 35.4502C21.7335 34.6335 19.8168 33.5335 17.9168 32.1502C16.0002 30.7502 14.1835 29.2002 12.4502 27.4835C10.7335 25.7502 9.1835 23.9335 7.80016 22.0335C6.4335 20.1335 5.3335 18.2335 4.5335 16.3502C3.7335 14.4502 3.3335 12.6335 3.3335 10.9002C3.3335 9.76683 3.5335 8.6835 3.9335 7.6835C4.3335 6.66683 4.96683 5.7335 5.85016 4.90016C6.91683 3.85016 8.0835 3.3335 9.31683 3.3335C9.7835 3.3335 10.2502 3.4335 10.6668 3.6335C11.1002 3.8335 11.4835 4.1335 11.7835 4.56683L15.6502 10.0168C15.9502 10.4335 16.1668 10.8168 16.3168 11.1835C16.4668 11.5335 16.5502 11.8835 16.5502 12.2002C16.5502 12.6002 16.4335 13.0002 16.2002 13.3835C15.9835 13.7668 15.6668 14.1668 15.2668 14.5668L14.0002 15.8835C13.8168 16.0668 13.7335 16.2835 13.7335 16.5502C13.7335 16.6835 13.7502 16.8002 13.7835 16.9335C13.8335 17.0668 13.8835 17.1668 13.9168 17.2668C14.2168 17.8168 14.7335 18.5335 15.4668 19.4002C16.2168 20.2668 17.0168 21.1502 17.8835 22.0335C18.7835 22.9168 19.6502 23.7335 20.5335 24.4835C21.4002 25.2168 22.1168 25.7168 22.6835 26.0168C22.7668 26.0502 22.8668 26.1002 22.9835 26.1502C23.1168 26.2002 23.2502 26.2168 23.4002 26.2168C23.6835 26.2168 23.9002 26.1168 24.0835 25.9335L25.3502 24.6835C25.7668 24.2668 26.1668 23.9502 26.5502 23.7502C26.9335 23.5168 27.3168 23.4002 27.7335 23.4002C28.0502 23.4002 28.3835 23.4668 28.7502 23.6168C29.1168 23.7668 29.5002 23.9835 29.9168 24.2668L35.4335 28.1835C35.8668 28.4835 36.1668 28.8335 36.3502 29.2502C36.5168 29.6668 36.6168 30.0835 36.6168 30.5502Z"
+                            stroke-width="2" stroke-miterlimit="10" />
+                        <path
+                            d="M30.8333 15.0003C30.8333 14.0003 30.05 12.467 28.8833 11.217C27.8167 10.067 26.4 9.16699 25 9.16699"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M36.6667 15.0002C36.6667 8.55016 31.45 3.3335 25 3.3335" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div>
+                    <h3>Write Me</h3>
+                    <address>
+                        <a href="mailto:foobar@gmail.com">foobar@gmail.com</a>
+                    </address>
+                    <svg class="contact__icon" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M3.3335 14.4339C3.3335 8.49053 6.66683 5.94336 11.6668 5.94336H28.3335C33.3335 5.94336 36.6668 8.49053 36.6668 14.4339V26.3207C36.6668 32.2641 33.3335 34.8113 28.3335 34.8113H11.6668"
+                            stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M28.3337 15.2832L23.117 19.5285C21.4003 20.9209 18.5837 20.9209 16.867 19.5285L11.667 15.2832"
+                            stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M3.3335 28.019H13.3335" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M3.3335 21.2266H8.3335" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </div>
 
         </section>
 
-        <section class="text-pink-light px-7" aria-label="about us">
-            <h1 class="logo">PRB</h1>
+        <section aria-label="about us">
+            <a href="#">PRB</a>
             <p>
                 Sit alii tantas viderer no. An mel nostrum appareat. Ad consul facilis est. Vix habeo scaevola
                 percipitur ne, qui noster abhorreant ne.
             </p>
-            <div class="flex gap-4" role="group">
+            <div role="group">
                 <a href="#">
-                    <svg class="h-7 fill-pink-light" aria-label="facebook" viewBox="0 0 14 27" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="facebook" viewBox="0 0 14 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M3.5 9H0V13.5H3.5V27H9.33333V13.5H13.5823L14 9H9.33333V7.12463C9.33333 6.05025 9.55733 5.625 10.6342 5.625H14V0H9.55733C5.362 0 3.5 1.78087 3.5 5.19187V9Z" />
                     </svg>
                 </a>
                 <a href="#">
-                    <svg class="h-7 fill-pink-light" aria-label="twitter" viewBox="0 0 27 23" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="twitter" viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M27 2.72288C26.0066 3.18514 24.939 3.49646 23.8185 3.63679C24.9626 2.91863 25.8413 1.78066 26.2541 0.424528C25.1842 1.08962 23.9985 1.57311 22.7362 1.83373C21.7271 0.705189 20.286 0 18.693 0C15.1166 0 12.4886 3.49764 13.2964 7.12854C8.694 6.88679 4.6125 4.57547 1.87987 1.0625C0.428625 3.67217 1.12725 7.08608 3.59325 8.81486C2.6865 8.7842 1.8315 8.52359 1.08563 8.08844C1.02488 10.7783 2.86425 13.2948 5.52825 13.855C4.74863 14.0767 3.89475 14.1285 3.02625 13.954C3.7305 16.2606 5.77575 17.9387 8.20125 17.9858C5.8725 19.8998 2.9385 20.7547 0 20.3915C2.45138 22.0389 5.364 23 8.4915 23C18.7762 23 24.5869 13.895 24.2359 5.72877C25.3181 4.9092 26.2575 3.88679 27 2.72288Z" />
                     </svg>
                 </a>
                 <a href="#">
-                    <svg class="h-7 fill-pink-light" aria-label="instagram" viewBox="0 0 27 27" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="instagram" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M13.5 0C9.83362 0 9.37463 0.01575 7.93463 0.081C3.03188 0.306 0.307125 3.02625 0.082125 7.9335C0.01575 9.37463 0 9.83362 0 13.5C0 17.1664 0.01575 17.6265 0.081 19.0665C0.306 23.9692 3.02625 26.694 7.9335 26.919C9.37463 26.9843 9.83362 27 13.5 27C17.1664 27 17.6265 26.9843 19.0665 26.919C23.9648 26.694 26.6963 23.9737 26.9179 19.0665C26.9843 17.6265 27 17.1664 27 13.5C27 9.83362 26.9843 9.37463 26.919 7.93463C26.6985 3.03638 23.9749 0.307125 19.0676 0.082125C17.6265 0.01575 17.1664 0 13.5 0ZM13.5 2.43337C17.1045 2.43337 17.532 2.44687 18.9562 2.51212C22.6147 2.67862 24.3236 4.4145 24.4901 8.046C24.5554 9.46912 24.5677 9.89662 24.5677 13.5011C24.5677 17.1068 24.5542 17.5331 24.4901 18.9562C24.3225 22.5844 22.6181 24.3236 18.9562 24.4901C17.532 24.5554 17.1068 24.5689 13.5 24.5689C9.8955 24.5689 9.468 24.5554 8.04488 24.4901C4.37738 24.3225 2.6775 22.5787 2.511 18.9551C2.44575 17.532 2.43225 17.1056 2.43225 13.5C2.43225 9.8955 2.44688 9.46912 2.511 8.04487C2.67863 4.4145 4.383 2.6775 8.04488 2.511C9.46912 2.44687 9.8955 2.43337 13.5 2.43337ZM6.56787 13.4996C6.56787 9.67126 9.67175 6.56738 13.5001 6.56738C17.3285 6.56738 20.4324 9.67126 20.4324 13.4996C20.4324 17.3291 17.3285 20.433 13.5001 20.433C9.67175 20.433 6.56787 17.328 6.56787 13.4996ZM13.5 18C11.0149 18 9 15.9862 9 13.5C9 11.0149 11.0149 9 13.5 9C15.9851 9 18 11.0149 18 13.5C18 15.9862 15.9851 18 13.5 18ZM19.0854 6.2948C19.0854 5.40043 19.8111 4.6748 20.7066 4.6748C21.6009 4.6748 22.3254 5.40043 22.3254 6.2948C22.3254 7.18918 21.6009 7.9148 20.7066 7.9148C19.8111 7.9148 19.0854 7.18918 19.0854 6.2948Z" />
                     </svg>
@@ -457,22 +349,22 @@
             </div>
         </section>
 
-        <nav class="flex gap-8 justify-between max-w-sm px-7" aria-label="sitemap">
-            <ul class="before:content before:text-bold before:text-pink-light text-white/50" aria-label="habeo">
+        <nav aria-label="sitemap">
+            <ul aria-label="habeo">
                 <li><a href="#">Scaevola</a></li>
                 <li><a href="#">Aliquam</a></li>
                 <li><a href="#">Noluisse</a></li>
                 <li><a href="#">Epicuri</a></li>
                 <li><a href="#">Detracto</a></li>
             </ul>
-            <ul class="before:content before:text-bold before:text-pink-light text-white/50" aria-label="indoctum">
+            <ul aria-label="indoctum">
                 <li><a href="#">Fierent</a></li>
                 <li><a href="#">Pericula</a></li>
                 <li><a href="#">Veniam</a></li>
                 <li><a href="#">Epicuri</a></li>
                 <li><a href="#">Mutat</a></li>
             </ul>
-            <ul class="before:content before:text-bold before:text-pink-light text-white/50" aria-label="quaestio">
+            <ul aria-label="quaestio">
                 <li><a href="#">Erroribus</a></li>
                 <li><a href="#">Modus</a></li>
                 <li><a href="#">Volumus</a></li>
@@ -481,11 +373,8 @@
             </ul>
         </nav>
 
-        <p class="text-center text-white text-bold py-7 bg-blue-dark lg:col-span-full">
-            &copy; Masterschool, 2022.
-            All rights
-            reserved
-        </p>
+        <p>&copy; Masterschool, 2022. All rights
+            reserved</p>
     </footer>
 </body>
 
