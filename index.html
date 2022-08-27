@@ -20,14 +20,14 @@
             --blue-l: rgba(16, 68, 255, 1);
             --blue-d: rgba(12, 31, 63, 1);
             --grey-t: rgba(51, 51, 51, .65);
+            --white-t: rgba(255, 255, 255, .55);
 
             --serif: "Noticia Text", serif;
             --sans-serif: "Source Sans Pro", sans-serif;
 
-            --debugging: 1px solid red;
-        }
+            --max-w: 304px;
+            /* --max-w: 360px; */
 
-        * {
             outline: 1px dashed rgba(28, 63, 12, .05);
             background: rgba(28, 63, 12, .05);
         }
@@ -37,8 +37,78 @@
             line-height: 24px;
         }
 
-        .contact__icon {
-            stroke: magenta;
+        .logo {
+            font-size: 30px;
+            line-height: 80px;
+            font-family: var(--serif);
+            font-weight: 700;
+        }
+    </style>
+
+    <style class="css:layout">
+        body {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
+
+        .header,
+        .main,
+        .misc,
+        .footer {
+            grid-column: 1/-1;
+            margin: auto;
+        }
+
+        main {
+            display: grid;
+            gap: 20px;
+        }
+    </style>
+
+    <style class="css:header">
+        .header>* {
+            color: var(--blue-l);
+            background: var(--pink-l);
+        }
+
+        .header--sticky {
+            position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            width: 100vw;
+        }
+
+        .header .logo {
+            color: var(--blue-l);
+        }
+
+        .hero {
+            height: calc(100vh);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+            padding: 0 28px;
+        }
+
+        .hero :first-child {
+            font-size: 72px;
+            line-height: 80px;
+            font-family: var(--serif);
+            font-weight: 700;
+        }
+
+        .hero :last-child {
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+
+        .main-nav svg {
+            height: 22px;
+            fill: var(--blue-l);
         }
     </style>
 
@@ -47,9 +117,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            padding: 0 calc((360 - 304)/2 * 1px);
-            /* x-axis 304  */
-            /* y-axis 153  */
+            max-width: var(--max-w);
         }
 
         .preview a {
@@ -61,7 +129,7 @@
         .preview a:last-child {
             flex-direction: row;
             gap: 16px;
-            align-items: center;
+            align-items: end;
         }
 
         .preview__figure {
@@ -71,9 +139,9 @@
             margin: auto;
         }
 
-        .preview__image {
+        .preview figure>img {
             height: 220px;
-            width: 304px;
+            width: var(--max-w);
         }
 
         .preview__title {
@@ -83,11 +151,13 @@
             color: var(--blue-d);
         }
 
-        .preview__caption {
+        .preview figcaption {
             font-weight: 700;
         }
 
         .preview__avatar {
+            height: 32px;
+            width: 32px;
             border-radius: 50%;
         }
 
@@ -96,8 +166,53 @@
         }
     </style>
 
-    <style>
-        :is(.recent-posts, .categories, .blog-tags)::before {
+    <style id="css:page-nav">
+        .page-nav ul {
+            display: grid;
+            grid-template-rows: max-content;
+
+            /*col-6*/
+            grid-template-columns: 1fr 1fr 4fr;
+            gap: 8px;
+
+            place-items: center;
+
+            max-width: var(--max-w);
+            margin: auto;
+        }
+
+        .page-nav li {
+            width: 100%;
+        }
+
+        .page-nav a {
+            /* anchor default display is inline-block*/
+            display: block;
+            border: 1px solid var(--blue-l);
+            border-radius: 3px;
+            color: var(--blue-l);
+            font-weight: 700;
+            padding-top: 13px;
+            padding-bottom: 11px;
+            text-align: center;
+        }
+
+        .page-nav a:hover {
+            color: white;
+            background: var(--blue-l);
+        }
+    </style>
+
+    <style id="css:misc">
+        .misc {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+
+            padding: 0 28px;
+        }
+
+        :is(.recent-post__list, .categories, .blog-tags)::before {
             content: attr(aria-label);
             text-transform: capitalize;
             font-weight: 700;
@@ -109,13 +224,19 @@
         }
 
         .categories,
-        .recent-posts,
+        .recent-post__list,
         .blog-tags {
             display: flex;
+            border: 1px solid var(--blue-l);
+            border-radius: 3px;
+            padding: 0 32px;
+
+            /* width: 100%; */
+            max-width: var(--max-w);
         }
 
         .categories,
-        .recent-posts {
+        .recent-post__list {
             flex-direction: column;
         }
 
@@ -129,9 +250,32 @@
         }
 
         /* override text color set for 
-        text content inside anchor */
+        text content inside annchor */
         .categories a>* {
             color: black;
+        }
+
+        .recent-post {
+            display: grid;
+            grid-template-rows: repeat(2, max-content);
+            grid-template-columns: max-content 1fr;
+            gap: 1px 16px;
+        }
+
+        .recent-post :is(h3) {
+            color: var(--grey-t);
+        }
+
+        .recent-post img {
+            grid-row: 1/-1;
+            height: 48px;
+            width: 70px;
+            border-radius: 5px;
+        }
+
+        .recent-post time {
+            font-size: 12px;
+            font-weight: 700;
         }
 
         .blog-tags {
@@ -141,33 +285,167 @@
             font-weight: 700;
         }
     </style>
+
+    <style id="css:footer">
+        .footer {
+            background: var(--blue-l);
+            color: var(--pink-l)
+        }
+
+        .copyright {
+            padding: 28px 0;
+            background: var(--blue-d);
+            text-align: center;
+            color: white;
+        }
+    </style>
+
+    <style id="css:contact">
+        /* i dont like this */
+        [aria-label="contact me"] {
+            background: var(--pink-l);
+        }
+
+        .contact__header {
+            display: flex;
+            flex-direction: column-reverse;
+
+            margin: auto;
+            max-width: var(--max-w);
+
+            margin-bottom: 40px;
+        }
+
+        .contact__header :first-child {
+            color: var(--blue-d);
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 42px;
+            line-height: 64px;
+        }
+
+        .contact__header :last-child {
+            color: var(--blue-l);
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+        .contact__group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+
+            padding: 0 28px;
+        }
+
+        .contact {
+            display: grid;
+            grid-template-rows: repeat(2, min-content);
+            grid-template-columns: max-content 1fr;
+            align-items: center;
+            gap: 7px 19.5px;
+
+            padding: 24px 26px;
+
+            width: 100%;
+            max-width: var(--max-w);
+
+            background: var(--white-t);
+            border-radius: 5px;
+        }
+
+        .contact :is(h3) {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 32px;
+            color: var(--blue-d);
+        }
+
+        .contact address {
+            color: var(--grey-t);
+            font-style: normal;
+        }
+
+        .contact__icon {
+            grid-row: 1/-1;
+            stroke: var(--blue-l);
+            width: 40px;
+        }
+    </style>
+
+    <style id="css:about-us">
+        .social__group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social__icon {
+            fill: var(--pink-l);
+            height: 27px;
+        }
+
+        .site-nav {
+            display: flex;
+            justify-content: space-between;
+
+            margin: auto;
+
+            max-width: var(--max-w);
+        }
+
+        .site-nav ul::before {
+            display: block;
+            width: 100%;
+            content: attr(aria-label);
+            text-transform: capitalize;
+            font-weight: 700;
+            color: var(--pink-l);
+            padding-bottom: 24px;
+        }
+
+        .site-nav li {
+            margin: 8px 0;
+            color: var(--white-t);
+        }
+
+        .site-nav li:first-child {
+            margin-top: 0;
+        }
+
+        .site-nav li:last-child {
+            margin-bottom: 0;
+        }
+    </style>
 </head>
 
 
 <body>
-    <header>
-        <div>
+    <header class="header">
+        <div class="header--sticky">
             <a class="logo">PRB</a>
 
-            <svg aria-label="menu" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M1.86743 18.1867C1.37629 18.1867 0.893429 18.3891 0.545714 18.744C0.198286 19.0989 0 19.5917 0 20.0933C0 20.5949 0.198286 21.0877 0.545714 21.4427C0.893429 21.7976 1.37629 22 1.86743 22C2.35857 22 2.84114 21.7976 3.18886 21.4427C3.53657 21.0877 3.73486 20.5949 3.73486 20.0933C3.73486 19.5917 3.53657 19.0989 3.18886 18.744C2.84114 18.3891 2.35857 18.1867 1.86743 18.1867ZM1.86743 9.09333C1.37629 9.09333 0.893429 9.29573 0.545714 9.65067C0.198286 10.0056 0 10.4984 0 11C0 11.5016 0.198286 11.9944 0.545714 12.3464C0.893429 12.7043 1.37629 12.9067 1.86743 12.9067C2.35857 12.9067 2.84114 12.7043 3.18886 12.3464C3.53657 11.9915 3.73486 11.5016 3.73486 11C3.73486 10.4984 3.53657 10.0056 3.18886 9.65067C2.84114 9.29573 2.35857 9.09333 1.86743 9.09333ZM1.86743 0C1.37629 0 0.893429 0.2024 0.545714 0.557333C0.198286 0.912267 0 1.40507 0 1.90667C0 2.40827 0.198286 2.90107 0.545714 3.256C0.893429 3.61093 1.37629 3.81333 1.86743 3.81333C2.35857 3.81333 2.84114 3.61093 3.18886 3.256C3.53657 2.90107 3.73486 2.40827 3.73486 1.90667C3.73486 1.40507 3.53657 0.912267 3.18886 0.557333C2.84114 0.2024 2.35857 0 1.86743 0ZM21.164 18.3333H8.53743C7.58543 18.3333 6.81343 19.1215 6.81343 20.0933C6.81343 21.0651 7.58543 21.8533 8.53743 21.8533H21.164C22.1157 21.8533 22.8877 21.0651 22.8877 20.0933C22.8877 19.1215 22.1157 18.3333 21.164 18.3333ZM8.53743 12.76H17.4857C18.4374 12.76 19.2094 11.9718 19.2094 11C19.2094 10.0282 18.4374 9.24 17.4857 9.24H8.53743C7.58543 9.24 6.81343 10.0282 6.81343 11C6.81343 11.9718 7.58543 12.76 8.53743 12.76ZM26 1.90667C26 2.87848 25.2283 3.66667 24.2763 3.66667H8.53743C7.58543 3.66667 6.81343 2.87848 6.81343 1.90667C6.81343 0.934853 7.58543 0.146667 8.53743 0.146667H24.2763C25.2283 0.146667 26 0.934853 26 1.90667Z" />
-            </svg>
+            <div class="main-nav">
+                <svg class="main-nav__icon" aria-label="menu" viewBox="0 0 26 22" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M1.86743 18.1867C1.37629 18.1867 0.893429 18.3891 0.545714 18.744C0.198286 19.0989 0 19.5917 0 20.0933C0 20.5949 0.198286 21.0877 0.545714 21.4427C0.893429 21.7976 1.37629 22 1.86743 22C2.35857 22 2.84114 21.7976 3.18886 21.4427C3.53657 21.0877 3.73486 20.5949 3.73486 20.0933C3.73486 19.5917 3.53657 19.0989 3.18886 18.744C2.84114 18.3891 2.35857 18.1867 1.86743 18.1867ZM1.86743 9.09333C1.37629 9.09333 0.893429 9.29573 0.545714 9.65067C0.198286 10.0056 0 10.4984 0 11C0 11.5016 0.198286 11.9944 0.545714 12.3464C0.893429 12.7043 1.37629 12.9067 1.86743 12.9067C2.35857 12.9067 2.84114 12.7043 3.18886 12.3464C3.53657 11.9915 3.73486 11.5016 3.73486 11C3.73486 10.4984 3.53657 10.0056 3.18886 9.65067C2.84114 9.29573 2.35857 9.09333 1.86743 9.09333ZM1.86743 0C1.37629 0 0.893429 0.2024 0.545714 0.557333C0.198286 0.912267 0 1.40507 0 1.90667C0 2.40827 0.198286 2.90107 0.545714 3.256C0.893429 3.61093 1.37629 3.81333 1.86743 3.81333C2.35857 3.81333 2.84114 3.61093 3.18886 3.256C3.53657 2.90107 3.73486 2.40827 3.73486 1.90667C3.73486 1.40507 3.53657 0.912267 3.18886 0.557333C2.84114 0.2024 2.35857 0 1.86743 0ZM21.164 18.3333H8.53743C7.58543 18.3333 6.81343 19.1215 6.81343 20.0933C6.81343 21.0651 7.58543 21.8533 8.53743 21.8533H21.164C22.1157 21.8533 22.8877 21.0651 22.8877 20.0933C22.8877 19.1215 22.1157 18.3333 21.164 18.3333ZM8.53743 12.76H17.4857C18.4374 12.76 19.2094 11.9718 19.2094 11C19.2094 10.0282 18.4374 9.24 17.4857 9.24H8.53743C7.58543 9.24 6.81343 10.0282 6.81343 11C6.81343 11.9718 7.58543 12.76 8.53743 12.76ZM26 1.90667C26 2.87848 25.2283 3.66667 24.2763 3.66667H8.53743C7.58543 3.66667 6.81343 2.87848 6.81343 1.90667C6.81343 0.934853 7.58543 0.146667 8.53743 0.146667H24.2763C25.2283 0.146667 26 0.934853 26 1.90667Z" />
+                </svg>
+            </div>
         </div>
 
-        <div>
+        <div class="hero">
             <h1>Pierre R Bernard</h1>
             <p>Personal Blog</p>
         </div>
     </header>
 
-
-    <main>
-        <div class="preview">
+    <main class="main">
+        <article class="preview">
             <a href="#">
                 <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
                 <figure class="preview__figure">
-                    <img class="preview__image" src="assets/posts/a.png" alt="Qualisque">
+                    <img src="assets/posts/a.png" alt="Qualisque">
                     <figcaption class="preview__caption">Qualisque</figcaption>
                 </figure>
             </a>
@@ -176,12 +454,12 @@
                 <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
                 <p class="preview__author">Graham Griffiths</p>
             </a>
-        </div>
-        <div class="preview">
+        </article>
+        <article class="preview">
             <a href="#">
                 <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
                 <figure class="preview__figure">
-                    <img class="preview__image" src="assets/posts/a.png" alt="Qualisque">
+                    <img src="assets/posts/a.png" alt="Qualisque">
                     <figcaption class="preview__caption">Qualisque</figcaption>
                 </figure>
             </a>
@@ -190,8 +468,8 @@
                 <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
                 <p class="preview__author">Graham Griffiths</p>
             </a>
-        </div>
-        <nav aria-label="pagination">
+        </article>
+        <nav class="page-nav" aria-label="pagination">
             <ul>
                 <li><a href="#" aria-label="goto page 1">1</a></li>
                 <li><a href="#" aria-label="goto page 2">2</a></li>
@@ -200,7 +478,7 @@
         </nav>
     </main>
 
-    <aside>
+    <aside class="misc">
 
         <ul class="categories" aria-label="categories">
             <li>
@@ -220,26 +498,26 @@
             </li>
         </ul>
 
-        <ul class="recent-posts" role="group" aria-label="recent posts">
+        <ul class="recent-post__list" role="group" aria-label="recent posts">
             <li>
-                <a href="#">
-                    <img src="#" alt="Pro eu apeirian suavitate dissentiet">
-                    <p>Pro eu apeirian suavitate dissentiet</p>
+                <a class="recent-post" href="#">
+                    <h3>Pro eu apeirian suavitate dissentiet</h3>
                     <time datetime="2019-08-20">20 august 2019</time>
+                    <img src="assets/posts/recents/a.png" alt="Pro eu apeirian suavitate dissentiet">
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <img src="#" alt="Qui dicunt ancillae id, ne mea homero persequeris">
-                    <p>Qui dicunt ancillae id, ne mea homero persequeris</p>
+                <a class="recent-post" href="#">
+                    <h3>Qui dicunt ancillae id, ne mea homero persequeris</h3>
                     <time datetime="2019-08-20">20 august 2019</time>
+                    <img src="assets/posts/recents/b.png" alt="Qui dicunt ancillae id, ne mea homero persequeris">
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <img src="#" alt="Qui dicunt ancillae id, ne mea homero persequeris">
-                    <p>Ius delectus instructior eu, eu eum mentitum percipit</p>
+                <a class="recent-post" href="#">
+                    <h3>Ius delectus instructior eu, eu eum mentitum percipit</h3>
                     <time datetime="2019-08-20">20 august 2019</time>
+                    <img src="assets/posts/recents/c.png" alt="Qui dicunt ancillae id, ne mea homero persequeris">
                 </a>
             </li>
         </ul>
@@ -258,16 +536,16 @@
         </ul>
     </aside>
 
-    <footer>
+    <footer class="footer">
 
         <section aria-label="contact me">
-            <div>
+            <div class="contact__header">
                 <h2>Contact me</h2>
                 <p>Share your thoughts</p>
             </div>
 
-            <div role="group">
-                <div>
+            <div class="contact__group" role="group">
+                <div class="contact">
                     <h3>Office</h3>
                     <address>
                         <a href="https://goo.gl/maps/4Z9Z9Z9Z9Z9Z9Z9Z9">
@@ -283,7 +561,7 @@
                             stroke-width="2" stroke-linejoin="round" />
                     </svg>
                 </div>
-                <div>
+                <div class="contact">
                     <h3>Call Me</h3>
                     <address>
                         <a href="tel:123-456-7890">123-456-7890</a>
@@ -299,7 +577,7 @@
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
-                <div>
+                <div class="contact">
                     <h3>Write Me</h3>
                     <address>
                         <a href="mailto:foobar@gmail.com">foobar@gmail.com</a>
@@ -318,30 +596,32 @@
                     </svg>
                 </div>
             </div>
-
         </section>
 
         <section aria-label="about us">
-            <a href="#">PRB</a>
+            <a class="logo" href="#">PRB</a>
             <p>
                 Sit alii tantas viderer no. An mel nostrum appareat. Ad consul facilis est. Vix habeo scaevola
                 percipitur ne, qui noster abhorreant ne.
             </p>
-            <div role="group">
+            <div class="social__group" role="group">
                 <a href="#">
-                    <svg aria-label="facebook" viewBox="0 0 14 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="social__icon" aria-label="facebook" viewBox="0 0 14 27" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M3.5 9H0V13.5H3.5V27H9.33333V13.5H13.5823L14 9H9.33333V7.12463C9.33333 6.05025 9.55733 5.625 10.6342 5.625H14V0H9.55733C5.362 0 3.5 1.78087 3.5 5.19187V9Z" />
                     </svg>
                 </a>
                 <a href="#">
-                    <svg aria-label="twitter" viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="social__icon" aria-label="twitter" viewBox="0 0 27 23" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M27 2.72288C26.0066 3.18514 24.939 3.49646 23.8185 3.63679C24.9626 2.91863 25.8413 1.78066 26.2541 0.424528C25.1842 1.08962 23.9985 1.57311 22.7362 1.83373C21.7271 0.705189 20.286 0 18.693 0C15.1166 0 12.4886 3.49764 13.2964 7.12854C8.694 6.88679 4.6125 4.57547 1.87987 1.0625C0.428625 3.67217 1.12725 7.08608 3.59325 8.81486C2.6865 8.7842 1.8315 8.52359 1.08563 8.08844C1.02488 10.7783 2.86425 13.2948 5.52825 13.855C4.74863 14.0767 3.89475 14.1285 3.02625 13.954C3.7305 16.2606 5.77575 17.9387 8.20125 17.9858C5.8725 19.8998 2.9385 20.7547 0 20.3915C2.45138 22.0389 5.364 23 8.4915 23C18.7762 23 24.5869 13.895 24.2359 5.72877C25.3181 4.9092 26.2575 3.88679 27 2.72288Z" />
                     </svg>
                 </a>
                 <a href="#">
-                    <svg aria-label="instagram" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="social__icon" aria-label="instagram" viewBox="0 0 27 27" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M13.5 0C9.83362 0 9.37463 0.01575 7.93463 0.081C3.03188 0.306 0.307125 3.02625 0.082125 7.9335C0.01575 9.37463 0 9.83362 0 13.5C0 17.1664 0.01575 17.6265 0.081 19.0665C0.306 23.9692 3.02625 26.694 7.9335 26.919C9.37463 26.9843 9.83362 27 13.5 27C17.1664 27 17.6265 26.9843 19.0665 26.919C23.9648 26.694 26.6963 23.9737 26.9179 19.0665C26.9843 17.6265 27 17.1664 27 13.5C27 9.83362 26.9843 9.37463 26.919 7.93463C26.6985 3.03638 23.9749 0.307125 19.0676 0.082125C17.6265 0.01575 17.1664 0 13.5 0ZM13.5 2.43337C17.1045 2.43337 17.532 2.44687 18.9562 2.51212C22.6147 2.67862 24.3236 4.4145 24.4901 8.046C24.5554 9.46912 24.5677 9.89662 24.5677 13.5011C24.5677 17.1068 24.5542 17.5331 24.4901 18.9562C24.3225 22.5844 22.6181 24.3236 18.9562 24.4901C17.532 24.5554 17.1068 24.5689 13.5 24.5689C9.8955 24.5689 9.468 24.5554 8.04488 24.4901C4.37738 24.3225 2.6775 22.5787 2.511 18.9551C2.44575 17.532 2.43225 17.1056 2.43225 13.5C2.43225 9.8955 2.44688 9.46912 2.511 8.04487C2.67863 4.4145 4.383 2.6775 8.04488 2.511C9.46912 2.44687 9.8955 2.43337 13.5 2.43337ZM6.56787 13.4996C6.56787 9.67126 9.67175 6.56738 13.5001 6.56738C17.3285 6.56738 20.4324 9.67126 20.4324 13.4996C20.4324 17.3291 17.3285 20.433 13.5001 20.433C9.67175 20.433 6.56787 17.328 6.56787 13.4996ZM13.5 18C11.0149 18 9 15.9862 9 13.5C9 11.0149 11.0149 9 13.5 9C15.9851 9 18 11.0149 18 13.5C18 15.9862 15.9851 18 13.5 18ZM19.0854 6.2948C19.0854 5.40043 19.8111 4.6748 20.7066 4.6748C21.6009 4.6748 22.3254 5.40043 22.3254 6.2948C22.3254 7.18918 21.6009 7.9148 20.7066 7.9148C19.8111 7.9148 19.0854 7.18918 19.0854 6.2948Z" />
                     </svg>
@@ -349,7 +629,7 @@
             </div>
         </section>
 
-        <nav aria-label="sitemap">
+        <nav class="site-nav" aria-label="sitemap">
             <ul aria-label="habeo">
                 <li><a href="#">Scaevola</a></li>
                 <li><a href="#">Aliquam</a></li>
@@ -373,7 +653,7 @@
             </ul>
         </nav>
 
-        <p>&copy; Masterschool, 2022. All rights
+        <p class="copyright">&copy; Masterschool, 2022. All rights
             reserved</p>
     </footer>
 </body>
