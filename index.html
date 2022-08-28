@@ -26,7 +26,7 @@
             --sans-serif: "Source Sans Pro", sans-serif;
 
             --max-w: 304px;
-            /* --max-w: 360px; */
+            /* --max-w: 400px; */
 
             outline: 1px dashed rgba(28, 63, 12, .05);
             background: rgba(28, 63, 12, .05);
@@ -35,6 +35,7 @@
         html {
             font-family: var(--sans-serif);
             line-height: 24px;
+            /* height: 100vh; */
         }
 
         .logo {
@@ -49,6 +50,7 @@
         body {
             display: grid;
             grid-template-columns: repeat(6, minmax(0, 1fr));
+            /* grid-template-rows: 1fr; */
         }
 
         .header,
@@ -63,6 +65,31 @@
             display: grid;
             gap: 20px;
         }
+
+        @media screen and (min-width: 1024px) {
+            body {
+                grid-template-columns: repeat(12, minmax(0, 1fr));
+            }
+
+            .header,
+            .main,
+            .misc,
+            .footer {
+                grid-column: 1/-1;
+                margin: 0;
+            }
+
+            .main {
+                grid-row: 2;
+                grid-column: 1/9;
+                padding: 28px;
+            }
+
+            .misc {
+                grid-row: 2;
+                grid-column: 9/-1;
+            }
+        }
     </style>
 
     <style class="css:header">
@@ -71,8 +98,18 @@
             background: var(--pink-l);
         }
 
-        .header--sticky {
-            position: fixed;
+        .header {
+            position: sticky;
+            top: 0;
+            right: 0;
+        }
+
+        .header--abs {
+            /*  */
+            /* position: fixed; */
+            /* top: 0; */
+            /* right: 0; */
+            /*  */
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -85,12 +122,16 @@
         }
 
         .hero {
-            height: calc(100vh);
+            color: var(--blue-l);
+            height: calc(100vh - 80px);
+            width: calc(100vw);
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: 14px;
             padding: 0 28px;
+            background: var(--pink-l);
+            /* height: -webkit-fill-available; */
         }
 
         .hero :first-child {
@@ -110,9 +151,40 @@
             height: 22px;
             fill: var(--blue-l);
         }
+
+
+        @media screen and (min-width: 1024px) {
+            .hero {
+                display: none;
+            }
+        }
+    </style>
+
+    <style class="css:main">
+        .main {
+            display: grid;
+            place-items: center;
+        }
+
+        .page-nav {
+            width: 100%;
+            grid-column: 1/-1;
+        }
+
+        @media screen and (min-width: 1024px) {
+            .main {
+                grid-template-columns: repeat(auto-fit, minmax(var(--max-w), 1fr));
+            }
+
+        }
     </style>
 
     <style id="css:preview">
+        .preview__group {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
         .preview {
             display: flex;
             flex-direction: column;
@@ -229,7 +301,7 @@
             display: flex;
             border: 1px solid var(--blue-l);
             border-radius: 3px;
-            padding: 0 32px;
+            padding: 42px 32px;
 
             /* width: 100%; */
             max-width: var(--max-w);
@@ -286,24 +358,12 @@
         }
     </style>
 
-    <style id="css:footer">
-        .footer {
-            background: var(--blue-l);
-            color: var(--pink-l)
-        }
-
-        .copyright {
-            padding: 28px 0;
-            background: var(--blue-d);
-            text-align: center;
-            color: white;
-        }
-    </style>
-
     <style id="css:contact">
-        /* i dont like this */
-        [aria-label="contact me"] {
+        .contact__section {
             background: var(--pink-l);
+
+            padding-top: 88px;
+            padding-bottom: 60px;
         }
 
         .contact__header {
@@ -372,12 +432,52 @@
             stroke: var(--blue-l);
             width: 40px;
         }
+
+        @media screen and (min-width: 1024px) {
+            .contact__section {
+
+                padding-top: 61px;
+                padding-bottom: 96px;
+            }
+
+            .contact__header {
+                text-align: center;
+                max-width: max-content;
+                margin-bottom: 52px;
+            }
+
+            .contact__header :first-child {
+                font-size: 56px;
+                line-height: 64px;
+            }
+
+            .contact__group {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .contact {
+                width: 275px;
+            }
+        }
     </style>
 
     <style id="css:about-us">
+        .about__section {
+            font-size: 20px;
+
+            padding: 0 28px;
+
+            margin-right: auto;
+            margin-left: auto;
+
+            max-width: var(--max-w);
+        }
+
         .social__group {
             display: flex;
             gap: 15px;
+            margin: 30px 0;
         }
 
         .social__icon {
@@ -392,6 +492,8 @@
             margin: auto;
 
             max-width: var(--max-w);
+
+            /* margin-bottom: 90px; */
         }
 
         .site-nav ul::before {
@@ -416,13 +518,74 @@
         .site-nav li:last-child {
             margin-bottom: 0;
         }
+
+        @media screen and (min-width: 1024px) {
+
+            .about__section,
+            .site-nav {
+                margin-bottom: 72px;
+
+                max-width: 470px;
+            }
+
+            .about__section {
+                margin-top: 62px
+            }
+
+            .site-nav {
+                margin-top: 95px;
+            }
+        }
+    </style>
+
+    <style id="css:footer">
+        .footer {
+            background: var(--blue-l);
+            color: var(--pink-l);
+            /* width: 100vw; */
+        }
+
+        .copyright {
+            padding: 28px 0;
+            background: var(--blue-d);
+            text-align: center;
+            color: white;
+        }
+
+        @media screen and (min-width: 1024px) {
+            .footer {
+                display: grid;
+                grid-template-areas:
+                    "contact contact"
+                    "about sitemap"
+                    "copy copy";
+
+                /* grid-template-columns: 2fr 1fr; */
+            }
+
+            .contact__section {
+                grid-column: 1/-1;
+            }
+
+            .about__section {
+                justify-self: center;
+            }
+
+            .site-nav {
+                width: 400px;
+            }
+
+            .copyright {
+                grid-column: 1/-1;
+            }
+        }
     </style>
 </head>
 
 
 <body>
     <header class="header">
-        <div class="header--sticky">
+        <div class="header--abs">
             <a class="logo">PRB</a>
 
             <div class="main-nav">
@@ -433,14 +596,41 @@
                 </svg>
             </div>
         </div>
-
-        <div class="hero">
-            <h1>Pierre R Bernard</h1>
-            <p>Personal Blog</p>
-        </div>
     </header>
 
+    <div class="hero">
+        <h1>Pierre R Bern<wbr/>ard</h1>
+        <p>Personal Blog</p>
+    </div>
     <main class="main">
+        <!-- <div class="preview__group" role="group"></div> -->
+        <article class="preview">
+            <a href="#">
+                <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
+                <figure class="preview__figure">
+                    <img src="assets/posts/a.png" alt="Qualisque">
+                    <figcaption class="preview__caption">Qualisque</figcaption>
+                </figure>
+            </a>
+
+            <a href="#" aria-label="avatar">
+                <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
+                <p class="preview__author">Graham Griffiths</p>
+            </a>
+        </article>
+        <article class="preview">
+            <a href="#">
+                <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
+                <figure class="preview__figure">
+                    <img src="assets/posts/a.png" alt="Qualisque">
+                    <figcaption class="preview__caption">Qualisque</figcaption>
+                </figure>
+            </a>
+            <a href="#" aria-label="avatar">
+                <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
+                <p class="preview__author">Graham Griffiths</p>
+            </a>
+        </article>
         <article class="preview">
             <a href="#">
                 <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
@@ -538,7 +728,7 @@
 
     <footer class="footer">
 
-        <section aria-label="contact me">
+        <section class="contact__section" aria-label="contact me">
             <div class="contact__header">
                 <h2>Contact me</h2>
                 <p>Share your thoughts</p>
@@ -598,7 +788,7 @@
             </div>
         </section>
 
-        <section aria-label="about us">
+        <section class="about__section" aria-label="about us">
             <a class="logo" href="#">PRB</a>
             <p>
                 Sit alii tantas viderer no. An mel nostrum appareat. Ad consul facilis est. Vix habeo scaevola
