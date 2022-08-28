@@ -167,21 +167,17 @@
 
     <style class="css:main">
         .main {
-            display: grid;
-            place-items: center;
+            display: flex;
+            flex-direction: column;
+            /* place-items: center; */
         }
 
-        .page-nav {
-            width: 100%;
-            grid-column: 1/-1;
-        }
 
-        @media screen and (min-width: 1024px) {
-            .main {
-                grid-template-columns: repeat(auto-fit, minmax(var(--max-w), 1fr));
-            }
+        @media screen and (min-width: 1024px) {}
+    </style>
 
-        }
+    <style class="css:related">
+
     </style>
 
     <style id="css:preview">
@@ -240,43 +236,6 @@
 
         .preview__author {
             color: var(--grey-t);
-        }
-    </style>
-
-    <style id="css:page-nav">
-        .page-nav ul {
-            display: grid;
-            grid-template-rows: max-content;
-
-            /*col-6*/
-            grid-template-columns: 1fr 1fr 4fr;
-            gap: 8px;
-
-            place-items: center;
-
-            max-width: var(--max-w);
-            margin: auto;
-        }
-
-        .page-nav li {
-            width: 100%;
-        }
-
-        .page-nav a {
-            /* anchor default display is inline-block*/
-            display: block;
-            border: 1px solid var(--blue-l);
-            border-radius: 3px;
-            color: var(--blue-l);
-            font-weight: 700;
-            padding-top: 13px;
-            padding-bottom: 11px;
-            text-align: center;
-        }
-
-        .page-nav a:hover {
-            color: white;
-            background: var(--blue-l);
         }
     </style>
 
@@ -602,75 +561,172 @@
         </div>
     </header>
 
+
+    <!-- 
+    article
+        author [border-tb]
+
+    related
+ -->
     <main class="main">
-        <div class="hero">
-            <h1>Pierre R Bern<wbr/>ard</h1>
-            <p>Personal Blog</p>
-        </div>
-        <!-- <div class="preview__group" role="group"></div> -->
-        <article class="preview">
-            <a href="blog.html">
-                <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
-                <figure class="preview__figure">
-                    <img src="assets/posts/a.png" alt="Qualisque">
-                    <figcaption class="preview__caption">Qualisque</figcaption>
-                </figure>
-            </a>
+        <article>
+            <header>
+                <h1>Mei ei tollit epicurei invenire</h1>
 
-            <a href="#" aria-label="avatar">
-                <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
-                <p class="preview__author">Graham Griffiths</p>
-            </a>
-        </article>
-        <article class="preview">
-            <a href="blog.html">
-                <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
-                <figure class="preview__figure">
-                    <img src="assets/posts/a.png" alt="Qualisque">
-                    <figcaption class="preview__caption">Qualisque</figcaption>
-                </figure>
-            </a>
+                <a href="index.html">Back to blog</a>
 
-            <a href="#" aria-label="avatar">
-                <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
-                <p class="preview__author">Graham Griffiths</p>
-            </a>
-        </article>
-        <article class="preview">
-            <a href="blog.html">
-                <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
-                <figure class="preview__figure">
-                    <img src="assets/posts/a.png" alt="Qualisque">
-                    <figcaption class="preview__caption">Qualisque</figcaption>
-                </figure>
-            </a>
+                <a href="#" aria-label="avatar">
+                    <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
+                    <p class="preview__author">Graham Griffiths</p>
+                </a>
 
-            <a href="#" aria-label="avatar">
-                <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
-                <p class="preview__author">Graham Griffiths</p>
-            </a>
-        </article>
-        <article class="preview">
-            <a href="blog.html">
-                <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
-                <figure class="preview__figure">
-                    <img src="assets/posts/a.png" alt="Qualisque">
-                    <figcaption class="preview__caption">Qualisque</figcaption>
-                </figure>
-            </a>
+                <!-- from figcaption -->
+                <p>Qualisque</p>
 
-            <a href="#" aria-label="avatar">
-                <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
-                <p class="preview__author">Graham Griffiths</p>
-            </a>
-        </article>
-        <nav class="page-nav" aria-label="pagination">
+                <time datetime="2019-08-20">20 august 2019</time>
+            </header>
+
+            <p>
+                Esse concludaturque usu id, et facete quaeque consequat vis. Quo ex ocurreret quaerendum. Mel cu
+                ancillae similique. Mei no ubique persecuti, at sit iusto aliquam interpretaris. Et vim graeco
+                principes.
+            </p>
+
+            <img src="assets/posts/a.png" alt="Qualisque">
+
+            <p>
+                Erroribus vituperatoribus no eos, no nobis alienum per. Dolor contentiones qui ei, exerci dissentiet
+                comprehensam eum ne. Quo in tacimates recusabo scripserit, in mea tantas soleat imperdiet, ut vim illum
+                dicam disputationi. Unum porro audiam at vel, eu nam primis regione. Vix ad everti diceret, ei omnium
+                regione admodum sit.
+            </p>
+
+            <p>
+                Mea an decore veritus probatus. Nec ea affert verterem. Vix probo semper et, mea simul graeco diceret
+                te. Qui no stet ferri qualisque, ut clita scripserit nec. Ei mei fabellas gubergren, ius nostro senserit
+                adversarium te.
+            </p>
+
+            <h3>Cu dico nullam pri</h3>
+
+            <p> Duo stet possim quaerendum eu, cum in invenire platonem. An animal assentior nam, sed qualisque
+                deterruisset
+                ea. Ei qui melius erroribus intellegebat, sed dico apeirian ei.
+            </p>
+            <p> Ea sed vivendo offendit persecuti, porro animal no cum. Eu pro ludus dignissim. Eos debet molestiae
+                constituto ne, quo consul interesset ei, cotidieque theophrastus ea his. Ei nominavi suavitate
+                deterruisset
+                qui, assum ubique quodsi sea ad. At partem vocent vel, ius id viris utinam.
+            </p>
+
+            <blockquote>
+                Nam natum volutpat eu. Natum elitr vel te. Id qui purto dicit, bonorum minimum et sit. Cum ei assum
+                tation homero, at per assum dicit verterem. Lorem deterruisset ea vis, usu eu hinc lorem inciderint, et
+                mel solum autem molestiae.
+            </blockquote>
+
+
+            <p>
+                Quidam officiis similique sea ei, vel tollit indoctum efficiendi ei, at nihil tantas platonem eos. Mazim
+                nemore singulis an ius, nullam ornatus nam ei. Idque maiestatis vis ut. An mel everti invenire
+                intellegam, legendos consequuntur eu sit. Solet nostrum consectetuer sea in.
+            </p>
+
+            <img src="#" alt="placeholder">
+
+            <p>
+                Diam facilisi insolens per cu, eos malorum voluptaria ei. Esse concludaturque usu id, et facete quaeque
+                consequat vis. Quo ex ocurreret quaerendum. Mel cu ancillae similique. Mei no ubique persecuti, at sit
+                iusto aliquam interpretaris.
+            </p>
+
             <ul>
-                <li><a href="#" aria-label="goto page 1">1</a></li>
-                <li><a href="#" aria-label="goto page 2">2</a></li>
-                <li><a href="#" aria-label="goto next page">Next</a></li>
+                <li><b>Id audiam aliquip sed</b></li>
+                <li><b>Graece postea usu ea</b></li>
+                <li><b>Sea diceret pertinax in</b></li>
             </ul>
-        </nav>
+
+            <p>
+                Dicat eripuit accumsan ad est. Facer facilisi ius ei, ea has cetero argumentum, vel at fugit temporibus.
+                Deseruisse definitionem his et, an has veri integre abhorreant, nam alii epicurei et. Ei ferri aperiri
+                pri. Nemore facilisi mediocrem at duo, zril ancillae ea sit. Ea eos essent ornatus percipit, mea an
+                persecuti pertinacia, te suas semper per. Et qui debet veritus, ei qui utroque luptatum sadipscing.
+            </p>
+
+            <ul>
+                <li><a href="#">Vide</a></li>
+                <li><a href="#">Legimus</a></li>
+                <li><a href="#">Consectetuer</a></li>
+            </ul>
+
+            <div class="social__group" role="group">
+                <a href="#">
+                    <svg class="social__icon" aria-label="facebook" viewBox="0 0 14 27" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M3.5 9H0V13.5H3.5V27H9.33333V13.5H13.5823L14 9H9.33333V7.12463C9.33333 6.05025 9.55733 5.625 10.6342 5.625H14V0H9.55733C5.362 0 3.5 1.78087 3.5 5.19187V9Z" />
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg class="social__icon" aria-label="twitter" viewBox="0 0 27 23" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M27 2.72288C26.0066 3.18514 24.939 3.49646 23.8185 3.63679C24.9626 2.91863 25.8413 1.78066 26.2541 0.424528C25.1842 1.08962 23.9985 1.57311 22.7362 1.83373C21.7271 0.705189 20.286 0 18.693 0C15.1166 0 12.4886 3.49764 13.2964 7.12854C8.694 6.88679 4.6125 4.57547 1.87987 1.0625C0.428625 3.67217 1.12725 7.08608 3.59325 8.81486C2.6865 8.7842 1.8315 8.52359 1.08563 8.08844C1.02488 10.7783 2.86425 13.2948 5.52825 13.855C4.74863 14.0767 3.89475 14.1285 3.02625 13.954C3.7305 16.2606 5.77575 17.9387 8.20125 17.9858C5.8725 19.8998 2.9385 20.7547 0 20.3915C2.45138 22.0389 5.364 23 8.4915 23C18.7762 23 24.5869 13.895 24.2359 5.72877C25.3181 4.9092 26.2575 3.88679 27 2.72288Z" />
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg class="social__icon" aria-label="instagram" viewBox="0 0 27 27" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M13.5 0C9.83362 0 9.37463 0.01575 7.93463 0.081C3.03188 0.306 0.307125 3.02625 0.082125 7.9335C0.01575 9.37463 0 9.83362 0 13.5C0 17.1664 0.01575 17.6265 0.081 19.0665C0.306 23.9692 3.02625 26.694 7.9335 26.919C9.37463 26.9843 9.83362 27 13.5 27C17.1664 27 17.6265 26.9843 19.0665 26.919C23.9648 26.694 26.6963 23.9737 26.9179 19.0665C26.9843 17.6265 27 17.1664 27 13.5C27 9.83362 26.9843 9.37463 26.919 7.93463C26.6985 3.03638 23.9749 0.307125 19.0676 0.082125C17.6265 0.01575 17.1664 0 13.5 0ZM13.5 2.43337C17.1045 2.43337 17.532 2.44687 18.9562 2.51212C22.6147 2.67862 24.3236 4.4145 24.4901 8.046C24.5554 9.46912 24.5677 9.89662 24.5677 13.5011C24.5677 17.1068 24.5542 17.5331 24.4901 18.9562C24.3225 22.5844 22.6181 24.3236 18.9562 24.4901C17.532 24.5554 17.1068 24.5689 13.5 24.5689C9.8955 24.5689 9.468 24.5554 8.04488 24.4901C4.37738 24.3225 2.6775 22.5787 2.511 18.9551C2.44575 17.532 2.43225 17.1056 2.43225 13.5C2.43225 9.8955 2.44688 9.46912 2.511 8.04487C2.67863 4.4145 4.383 2.6775 8.04488 2.511C9.46912 2.44687 9.8955 2.43337 13.5 2.43337ZM6.56787 13.4996C6.56787 9.67126 9.67175 6.56738 13.5001 6.56738C17.3285 6.56738 20.4324 9.67126 20.4324 13.4996C20.4324 17.3291 17.3285 20.433 13.5001 20.433C9.67175 20.433 6.56787 17.328 6.56787 13.4996ZM13.5 18C11.0149 18 9 15.9862 9 13.5C9 11.0149 11.0149 9 13.5 9C15.9851 9 18 11.0149 18 13.5C18 15.9862 15.9851 18 13.5 18ZM19.0854 6.2948C19.0854 5.40043 19.8111 4.6748 20.7066 4.6748C21.6009 4.6748 22.3254 5.40043 22.3254 6.2948C22.3254 7.18918 21.6009 7.9148 20.7066 7.9148C19.8111 7.9148 19.0854 7.18918 19.0854 6.2948Z" />
+                    </svg>
+                </a>
+            </div>
+
+            <footer>
+                <h2>Graham Griffiths</h2>
+                <h3>Author</h3>
+
+                <p>
+                    His dolorem habemus mandamus et, eius ponderum at nec. Cum lorem molestiae ne, esse vulputate
+                    definitiones ut est. Fastidii iracundia at quo.
+                </p>
+
+                <img src="#" alt="placeholder">
+            </footer>
+        </article>
+
+        <!-- flex-wrap -->
+        <section class="related__group" aria-label="related">
+            <article class="preview">
+                <a href="#">
+                    <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
+                    <figure class="preview__figure">
+                        <img src="assets/posts/a.png" alt="Qualisque">
+                        <figcaption class="preview__caption">Qualisque</figcaption>
+                    </figure>
+                </a>
+
+                <a href="#" aria-label="avatar">
+                    <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
+                    <p class="preview__author">Graham Griffiths</p>
+                </a>
+            </article>
+            <article class="preview">
+                <a href="#">
+                    <h3 class="preview__title">Qui no stet ferri qualisque ut clita scripserit nec</h3>
+                    <figure class="preview__figure">
+                        <img src="assets/posts/a.png" alt="Qualisque">
+                        <figcaption class="preview__caption">Qualisque</figcaption>
+                    </figure>
+                </a>
+
+                <a href="#" aria-label="avatar">
+                    <img class="preview__avatar" src="assets/avatar/Graham%20Griffiths.png" alt="Graham Griffiths">
+                    <p class="preview__author">Graham Griffiths</p>
+                </a>
+            </article>
+        </section>
     </main>
 
     <aside class="misc">
@@ -718,7 +774,7 @@
         </ul>
 
         <ul class="blog-tags" aria-label="tags">
-            <!-- <li><a href="#">Vide</a></li> -->
+            <li><a href="#">Vide</a></li>
             <li><a href="#">Legimus</a></li>
             <li><a href="#">Consectetuer</a></li>
             <li><a href="#">Lorem</a></li>
