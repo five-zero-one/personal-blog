@@ -167,7 +167,6 @@ main {
     .main {
         grid-template-columns: repeat(auto-fit, minmax(var(--max-w), 1fr));
     }
-
 }
 
 .preview__group {
